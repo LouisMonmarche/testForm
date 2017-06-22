@@ -23,12 +23,31 @@ var TONGUES = ['FR', 'EN'];
  */
 
 angular.module('TestForm')
-    .controller('TestFormController', ['$scope', function ($scope) {
+    .controller('TestFormController', ['$scope', '$timeout', function ($scope, $timeout) {
             $scope.tongueIndex = 0;
             $scope.message = {
                 email: null,
                 subject: null,
                 body: null
+            };
+
+            $scope.subjectUpdating = null;
+            $scope.updateSubject = function () {
+                if ($scope.subjectUpdating !== null) {
+                    $timeout.cancel($scope.subjectUpdating);
+                }
+                $scope.subjectUpdating = $timeout(function () {
+                    $scope.subjectUpdating = null
+                }, 500);
+            };
+            $scope.bodyUpdating = null;
+            $scope.updateBody = function () {
+                if ($scope.bodyUpdating !== null) {
+                    $timeout.cancel($scope.bodyUpdating);
+                }
+                $scope.bodyUpdating = $timeout(function () {
+                    $scope.bodyUpdating = null
+                }, 500);
             };
 
             $scope.submit = function () {
@@ -41,7 +60,7 @@ angular.module('TestForm')
                 string = string.replace('KEEPED', keeped);
                 string = string.replace('MAX', max);
                 return string;
-            }
+            };
 
             $scope.changeToungue = function () {
                 $scope.tongueIndex = ($scope.tongueIndex + 1) % TONGUES.length

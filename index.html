@@ -18,17 +18,16 @@
 
     <div class="formInput required">
         <label class="requiredLabel">Subject : </label>
-        <input name="subjectInput" type="text" ng-model="message.subject" maxlength="100" required/>
+        <input ng-change="updateSubject()" name="subjectInput" type="text" ng-model="message.subject" maxlength="100" required/>
     </div>
-    <div ng-click="changeToungue()">{{getLimitTrad(100,message.subject)}}</div>
+    <div ng-show="subjectUpdating !==null" ng-click="changeToungue()">{{getLimitTrad(100,message.subject)}}</div>
 
 
     <div class="formInput">
         <label>Body : </label>
-        <input type="test" ng-model="message.body" maxlength="1000"/>
-
+        <input ng-change="updateBody()" type="test" ng-model="message.body" maxlength="1000"/>
     </div>
-    <div ng-click="changeToungue()">{{getLimitTrad(1000,message.body)}}</div>
+    <div ng-show="bodyUpdating !== null" ng-click="changeToungue()">{{getLimitTrad(1000,message.body)}}</div>
 
 
     <input type="submit" ng-click="messageForm.$valid && submit()" value="Save"/>
