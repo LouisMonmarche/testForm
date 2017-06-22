@@ -10,10 +10,22 @@
 
 <body ng-controller="TestFormController">
 
-<form class="simple-form" name="messageForm">
-    <label>Mail : <input type="email" ng-model="message.email" required/></label><br/>
-    <label>Subject : <input type="text" ng-model="message.subject" maxlength="100" required/></label><br/>
-    <label>Body : <input type="email" ng-model="message.body" maxlength="1000"/></label><br/>
+<form name="messageForm" class="centerForm">
+    <div class="formInput required">
+        <label class="requiredLabel">Mail : </label>
+        <input type="email" ng-model="message.email" required/>
+    </div>
+
+    <div class="formInput required">
+        <label class="requiredLabel">Subject : </label>
+        <input type="text" ng-model="message.subject" maxlength="100" required/>
+    </div>
+
+    <div class="formInput">
+        <label>Body : </label>
+        <input type="email" ng-model="message.body" maxlength="1000"/>
+    </div>
+
 
     <input type="submit" ng-click="messageForm.$valid && submit()" value="Save"/>
 </form>
