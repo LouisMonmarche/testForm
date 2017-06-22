@@ -10,12 +10,12 @@
 
 <body ng-controller="TestFormController">
 
-<form novalidate class="simple-form">
-    <label>Mail : <input type="email" ng-model="message.email"/></label><br/>
-    <label>Subject : <input type="text" ng-model="message.subject"/></label><br/>
-    <label>Body : <input type="email" ng-model="message.body"/></label><br/>
+<form class="simple-form" name="messageForm">
+    <label>Mail : <input type="email" ng-model="message.email" required/></label><br/>
+    <label>Subject : <input type="text" ng-model="message.subject" maxlength="100" required/></label><br/>
+    <label>Body : <input type="email" ng-model="message.body" maxlength="1000"/></label><br/>
 
-    <input type="submit" ng-click="submit()"/>
+    <input type="submit" ng-click="messageForm.$valid && submit()" value="Save"/>
 </form>
 </div>
 
