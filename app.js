@@ -3,6 +3,15 @@
  */
 angular.module('TestForm', []);
 
+var TRADUCTIONS = {
+    LIMIT_STRING: {
+        FR: "KEEPED caractères restants sur MAX",
+        EN: "KEEPED letters available : MAX left"
+    }
+};
+
+var TONGUES = ['FR', 'EN'];
+
 /**
 
  - Ecrire un composant JS permettant
@@ -15,7 +24,7 @@ angular.module('TestForm', []);
 
 angular.module('TestForm')
     .controller('TestFormController', ['$scope', function ($scope) {
-
+            $scope.tongueIndex = 0;
             $scope.message = {
                 email: null,
                 subject: null,
@@ -26,7 +35,18 @@ angular.module('TestForm')
                 console.log($scope.message);
             };
 
-            $scope.getLimitTrad =function(){}
+            $scope.getLimitTrad = function (max, string) {
+                var keeped = string === null ? max : max - string.length;
+                var string = TRADUCTIONS.LIMIT_STRING[TONGUES[$scope.tongueIndex]];
+                string = string.replace('KEEPED', keeped);
+                string = string.replace('MAX', max);
+                return string;
+            }
+
+            $scope.changeToungue = function () {
+                $scope.tongueIndex = ($scope.tongueIndex + 1) % TONGUES.length
+            };
+
 
         }]
     );

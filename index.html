@@ -18,12 +18,14 @@
 
     <div class="formInput required">
         <label class="requiredLabel">Subject : </label>
-        <input type="text" ng-model="message.subject" maxlength="100" required/>
+        <input name="subjectInput" type="text" ng-model="message.subject" maxlength="100" required/>
+        <div ng-click="changeToungue()">{{getLimitTrad(100,message.subject)}}</div>
     </div>
 
     <div class="formInput">
         <label>Body : </label>
-        <input type="email" ng-model="message.body" maxlength="1000"/>
+        <input type="test" ng-model="message.body" maxlength="1000"/>
+        <div ng-click="changeToungue()">{{getLimitTrad(1000,message.body)}}</div>
     </div>
 
 
